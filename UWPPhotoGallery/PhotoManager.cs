@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +18,15 @@ namespace UWPPhotoGallery
         /// <summary>
         /// The collection of all the photos in the mypictures folder 
         /// </summary>
-        private static List<Photo> AllPhotos = new List<Photo>();
+        public static List<Photo> AllPhotos = new List<Photo>();
         /// <summary>
         /// This variable is used to initialise the photo collection only once, and
         /// then after that it will the already initialised collection
         ///
         /// </summary>
         private static bool isinitialised = false;
-        /// <summary>
-        /// This method will initilaze the Allphotos static member variable, the first time it is caled.
-        /// Once initialised, it will always return AllPhotos collection.
-        /// </summary>
-        /// <param name="photos"></param>
-        /// <returns></returns>
+
+
         public static async Task<bool> GetAllPhotos(ObservableCollection<Photo> photos)
         {
             //how to get absolute path
@@ -123,5 +120,6 @@ namespace UWPPhotoGallery
                 }
             }
         }
+
     }
 }

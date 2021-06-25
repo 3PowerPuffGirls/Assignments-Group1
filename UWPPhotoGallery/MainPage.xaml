@@ -13,22 +13,22 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0">
-          <!--  <Border.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="Gray"/>
-                </LinearGradientBrush>
-            </Border.Background> !-->
-        </Border>
-        
+        <Border Grid.Row="0"
+                Background="Gray"/>
         <MenuBar VerticalAlignment="Top"
                  Height="35"
                  Width="330"
                  HorizontalAlignment="Left"
                  BorderThickness="20"
                  BorderBrush="White">
+            <!--<MenuBarItem Name="SelectPhotos"
+                         Title="    Select"
+                         Width="100"
+                         FontFamily="Verdana"
+                         Background="LightGray"
+                         Margin="0,0,10,0"/>-->
             <MenuBarItem Name="PhotosMenuItem"
-                         Title="All Photos"
+                         Title="    Photos"
                          Width="100"
                          HorizontalContentAlignment="Center"
                          FontFamily="Verdana"
@@ -36,16 +36,18 @@
                          VerticalAlignment="Stretch" 
                          HorizontalAlignment="Stretch"
                          Background="LightGray"
-                         Margin="0,0,10,0"
-                         DoubleTapped="PhotosMenuItem_DoubleTapped"
-                         >
+                         Margin="0,0,10,0">
+                <MenuFlyoutItem x:Name="AllPhotosFlyout" 
+                                Text="All Photos"
+                                Click="AllPhotosFlyout_Click"/>
+                <MenuFlyoutSeparator />
                 <MenuFlyoutItem x:Name="PhotosNewFlyout" 
                                 Text="New"
                                 Click="PhotosNewFlyout_Click"/>
             </MenuBarItem>
 
             <MenuBarItem Name="AlbumsMenuItem"  
-                         Title="Albums"
+                         Title="   Albums"
                          Width="100"
                          FontFamily="Verdana" 
                          AutomationProperties.HelpText="Go to Albums" 
@@ -53,8 +55,7 @@
                          VerticalAlignment="Stretch" 
                          HorizontalAlignment="Stretch"
                          Background="LightGray"
-                         Margin="0,0,10,0"
-                         Tapped="AlbumsMenuItem_Tapped">
+                         Margin="0,0,10,0">
                 <MenuFlyoutItem x:Name="AlbumsNewFlyout" 
                                 Text="New"
                                 Click="AlbumsNewFlyout_Click"/>

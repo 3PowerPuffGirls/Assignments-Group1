@@ -34,25 +34,14 @@ namespace UWPPhotoGallery
             this.MainFrame.Navigate(typeof(PhotosDisplayPage));
         }
 
-        private void PhotosMenuItem_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            string context = "Photos";
-            this.MainFrame.Navigate(typeof(PhotosDisplayPage), context);
-
-        }
 
         private async void PhotosNewFlyout_Click(object sender, RoutedEventArgs e)
         {
             //The user wants to add a few photos from other places to this collection in pictures library
             await PhotoManager.AddNewPhoto();
+
             //reload the page to reflect the change
-            
             this.MainFrame.Navigate(typeof(PhotosDisplayPage));
-        }
-
-        private void AlbumsMenuItem_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
         }
 
         private void AlbumsNewFlyout_Click(object sender, RoutedEventArgs e)
@@ -65,11 +54,12 @@ namespace UWPPhotoGallery
 
         }
 
-        private void PhotosMenuItem_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void AllPhotosFlyout_Click(object sender, RoutedEventArgs e)
         {
             string context = "Photos";
             this.MainFrame.Navigate(typeof(PhotosDisplayPage), context);
-
         }
+
+
     }
 }

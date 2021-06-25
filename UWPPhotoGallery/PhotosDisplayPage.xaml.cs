@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using UWPPhotoGallery.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,10 +29,15 @@ namespace UWPPhotoGallery
     public sealed partial class PhotosDisplayPage : Page
     {
         public ObservableCollection<Photo> Photos;
+
+        //public static List<Photo> selectedPhotos { get; set; } = new List<Photo>();
+
+
         public PhotosDisplayPage()
         {
             this.InitializeComponent();
             Photos = new ObservableCollection<Photo>();
+            DeleteBtn.Visibility = Visibility.Collapsed;
             //this.Loaded += PhotosDisplayPage_Loaded;
         }
 
@@ -90,6 +98,27 @@ namespace UWPPhotoGallery
             PhotoFlipView.Visibility = Visibility.Visible;
             //disable the listtypetextbox
             DisplayTypeTextBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void SelectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //make photos selectable for the user to choose
+            DeleteBtn.Visibility = Visibility.Visible;
+            SelectBtn.Visibility = Visibility.Collapsed;
+            PhotoGrid.SelectionMode = ListViewSelectionMode.Multiple;
+
+            //Flipview still pops up when photo is clicked? Unable to find control to disable.
+            PhotoFlipView.Visibility = Visibility.Collapsed;
+
+            DisplayTypeTextBlock.Text = "Select Photos";
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteBtn.Visibility = Visibility.Collapsed;
+            SelectBtn.Visibility = Visibility.Visible;
+            this.Frame.Navigate(typeof(PhotosDisplayPage));
         }
     }
 }
